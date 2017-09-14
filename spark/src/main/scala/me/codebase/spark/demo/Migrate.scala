@@ -40,7 +40,7 @@ object Migrate {
       .load().createOrReplaceTempView("kv")
 
     spark.udf.register("makeColumn", (name: String) => s"""{"newColumnName":"$name"}""")
-    "select *,makeColumn('key') as newCol from kv".drop("key").create("kv")
+
 
   }
 
