@@ -6,6 +6,14 @@ package me.codebase.scala
 object Grammar {
 
   def main(args: Array[String]): Unit = {
+
+    type tesdsds = scala.collection.mutable.StringBuilder
+    var sb: tesdsds = new StringBuilder
+
+    print(sb.mkString("stest").contains("st"))
+  }
+
+  private def test1 = {
     Range.apply(1, 3).foreach(System.out.print)
     val r1 = Range.apply(1, 9)
     for (i <- r1) println(i)

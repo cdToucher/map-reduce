@@ -10,7 +10,7 @@ object SparkSqlApp {
 
   def main(args: Array[String]): Unit = {
     val path = Resources.getResource("abc").getPath
-    val sparkSession = SparkSession.builder().master("local").appName("Simple Application").getOrCreate()
+    val sparkSession = SparkSession.builder().master("local[1]").appName("Simple Application").getOrCreate()
 
     val ds: Dataset[Row] = sparkSession.read.text(path)
 //    val ds2: sql.DataFrame = sparkSession.read.text(path)
@@ -24,7 +24,7 @@ object SparkSqlApp {
     //    sparkSession.sql("SET -v").show(numRows = 200, truncate = false)
 
     val df = sparkSession.sql("select * from temps")
-    df.foreach(_ => println(_))
+    df.foreach(println(_))
   }
 
 }

@@ -7,7 +7,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 /**
   * Created by chendong on 2017/4/17.
   */
-object SimpleApp {
+object LocalSimpleApp {
 
   def main(args: Array[String]): Unit = {
     val path = Resources.getResource("abc.txt").getPath
