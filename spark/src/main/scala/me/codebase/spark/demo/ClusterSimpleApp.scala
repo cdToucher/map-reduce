@@ -13,7 +13,7 @@ object ClusterSimpleApp {
   private val appName = "Cluster Simple Application"
   private val master = "spark://10.1.51.237:7077"
 
-  def main(args: Array[String]): Unit = {
+  def  main(args: Array[String]): Unit = {
     val path = Resources.getResource("abc").getPath
     conf = new SparkConf().setJars(Seq())
     val ss = SparkSession.builder().appName(appName).master("local[1]").config(conf).getOrCreate()

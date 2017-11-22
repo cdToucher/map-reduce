@@ -5,6 +5,7 @@ import com.datastax.driver.core.{Cluster, Session}
 /**
   * Created by chendong on 2017/10/26.
   */
+
 object Cassandra {
 
   lazy val cluster: Cluster = CassandraCluster(DefaultConfig.cassandra)

@@ -11,6 +11,8 @@ object Grammar {
     var sb: tesdsds = new StringBuilder
 
     print(sb.mkString("stest").contains("st"))
+
+
   }
 
   private def test1 = {

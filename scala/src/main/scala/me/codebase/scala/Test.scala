@@ -6,15 +6,14 @@ package me.codebase.scala
   */
 object Test {
 
+  def *(n: Int): String = {
+    val buf = new StringBuilder
+    for (i <- 0 until n) buf append toString
+    buf.toString
+  }
+
   def main(args: Array[String]): Unit = {
-
-
-    while (true){
-
-    }
-    for (i <- 1 until 10){
-      print(i)
-    }
-
+    val base = "!@#"
+    print(base * 2)
   }
 }
