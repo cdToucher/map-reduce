@@ -12,9 +12,12 @@
         <module>scala</module>
         <module>spark</module>
         <module>deeplearning</module>
+        <module>build</module>
     </modules>
 
     <properties>
+        <lib.dir>../build/lib</lib.dir>
+
         <junit.version>4.12</junit.version>
         <scala.version>2.11.7</scala.version>
         <spark.version>2.1.0</spark.version>
