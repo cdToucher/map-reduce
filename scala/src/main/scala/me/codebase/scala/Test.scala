@@ -1,5 +1,7 @@
 package me.codebase.scala
 
+import java.net.InetAddress
+
 
 /**
   * Created by chendong on 2017/8/14.
@@ -7,8 +9,7 @@ package me.codebase.scala
 object Test {
 
   def main(args: Array[String]): Unit = {
-    val base = "!@#"
-    print(base < "sdsdsdsd")
-    print(base * 2)
+    val ip = InetAddress.getLocalHost.getHostAddress
+    print(ip)
   }
 }

@@ -1,11 +1,12 @@
 package me.codebase.spark.demo
 
 
+import java.io.File
 import java.util.Properties
 
+import me.codebase.spark.constant.SysProperty
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
-import org.spark_project.guava.io.Resources
 
 import scala.io.Source
 
@@ -14,32 +15,39 @@ import scala.io.Source
   *
   * standalone client mode demo
   */
-private[demo] object StandaloneDeployApp {
+private[demo] object StandaloneDeployApp extends SysProperty {
 
   def main(args: Array[String]): Unit = {
-    var session = SparkSession.builder().config(getSparkConfig()).getOrCreate()
+
+    System.setProperty(APP_HOME, args(0))
+
+    val conf = getSparkConfig()
+    var session = SparkSession.builder().config(conf).getOrCreate()
     var dfr = session.read.format("org.apache.spark.sql.cassandra")
-      .option("", "").load()
-    session.sql("")
+      .options(Map("keyspace" -> "uem_octopus", "table" -> "trend"))
+      .load()
+    println(dfr.count())
+    session.close()
   }
 
 
   def getConfigProperties = {
-    var bufferedSource = Source.fromFile(Resources.getResource("env.properties").getPath, "utf-8")
+    val stream = getClass.getClassLoader.getResourceAsStream("env.properties")
+    var bufferedSource = Source fromInputStream(stream, "utf-8")
     var properties = new Properties
-    properties.load(bufferedSource.reader())
+    properties load bufferedSource.reader
     properties
   }
 
   def getSparkConfig(): SparkConf = {
-
-    var config: SparkConf = new SparkConf()
-    //    getConfigProperties.forEach((key, value) => config.set(key, value))
-
-    config.setJars(Seq())
-      .setAppName("TEST")
-      .setMaster("")
-    config
+    var conf: SparkConf = new SparkConf()
+    val jarsPath = System.getProperty("app.home") + "/lib/"
+    val jars = new File(jarsPath).listFiles().map(_.getAbsolutePath).filter(_.endsWith(".jar"))
+    import scala.collection.JavaConverters._
+    conf.setAll(getConfigProperties.asScala)
+    conf.setJars(jars)
+    //      .setMaster("local[1]")
+    conf
   }
 
 }

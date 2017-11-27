@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 source /etc/profile
 umask 077
@@ -9,7 +9,7 @@ JAVA_DIR=
 # Java opts
 JAVA_OPTSS=
 
-MAIN_CLASS= __MAIN_CLASS__
+MAIN_CLASS=__MAIN_CLASS__
 
 CURRENT_DIR=$(cd "$(dirname "$0")"; pwd)  
 cd $CURRENT_DIR
@@ -27,7 +27,7 @@ if [ "$JAVA_OPTS" != "" ];  then
    JAVA_OPTSS="$JAVA_OPTS"
 else
    echo "warn: use default jvm options"
-   JAVA_OPTSS="-ms1024m -mx2048m -Xmn512m -Djava.awt.headless=true"
+   JAVA_OPTSS="-Xmx1024m -Djava.awt.headless=true"
 fi
 
 psid=0
@@ -67,8 +67,8 @@ start() {
    else
       echo -n "Starting $MAIN_CLASS..."
 
-      nohup $JAVA_DIR/bin/java $JAVA_OPTSS -Duser.timezone=GTM-8 -Dapp.name=$APP_NAME -classpath $CLASSPATH $MAIN_CLASS $APP_HOME > /dev/null 2>&1 &
-
+      #nohup $JAVA_DIR/bin/java $JAVA_OPTSS -Duser.timezone=GTM-8 -Dapp.name=$APP_NAME -classpath $CLASSPATH $MAIN_CLASS $APP_HOME > /dev/null 2>&1 &
+      nohup $JAVA_DIR/bin/java $JAVA_OPTSS -Duser.timezone=GTM-8 -Dapp.name=$APP_NAME -classpath $CLASSPATH $MAIN_CLASS $APP_HOME > $APP_HOME/logs/nohup.out 2>&1 < /dev/null &
       check_pid
       sleep 3
 

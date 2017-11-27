@@ -12,6 +12,8 @@
         <module>scala</module>
         <module>spark</module>
         <module>deeplearning</module>
+
+
         <module>build</module>
     </modules>
 
@@ -114,5 +116,52 @@
         </dependencies>
     </dependencyManagement>
 
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>build/lib</directory>
+                            <excludes>
+                                <exclude>.gitignore</exclude>
+                            </excludes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                        <fileset>
+                            <directory>build/conf</directory>
+                            <excludes>
+                                <exclude>.gitignore</exclude>
+                            </excludes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                        <fileset>
+                            <directory>build/doc</directory>
+                            <excludes>
+                                <exclude>.gitignore</exclude>
+                            </excludes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                        <fileset>
+                            <directory>build/logs</directory>
+                            <excludes>
+                                <exclude>.gitignore</exclude>
+                            </excludes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                        <fileset>
+                            <directory>build/temp</directory>
+                            <excludes>
+                                <exclude>.gitignore</exclude>
+                            </excludes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
