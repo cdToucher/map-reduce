@@ -3,7 +3,7 @@ package me.codebase.scala
 /**
   * Created by chendong on 2016/10/28
   */
-object Grammar {
+object GrammarTry {
 
   def main(args: Array[String]): Unit = {
 
